@@ -81,17 +81,53 @@ The app will be accessible at http://127.0.0.1:8000
 
 - Registers a new user in the system with unique constraints on username, phone number, and email.
 
+Example:
+
+```
+curl -X POST "http://127.0.0.1:8000/register" \
+-H "Content-Type: application/json" \
+-d '{
+  "First_name": "John",
+  "Last_name": "Doe",
+  "Phone_number": "1234567890",
+  "Username": "johndoe",
+  "Password": "securepassword",
+  "Email": "johndoe@example.com"
+}'
+
+```
+
 ### Log In
 
 ##### Endpoint: POST /login
 
 - Logs in an existing user and returns a JWT token set as a cookie.
 
+Example:
+
+```
+curl -X POST "http://127.0.0.1:8000/login" \
+-H "Content-Type: application/json" \
+-d '{
+  "Username": "johndoe",
+  "Password": "securepassword"
+}' \
+-v
+
+```
+
 ##### Access Profile
 
 Endpoint: GET /me
 
 -  Access the authenticated user's profile using the JWT token in cookies.
+
+Example
+
+```
+curl -X GET "http://127.0.0.1:8000/me" \
+-H "Cookie: token={your-token}"
+```
 
 ## License
 
